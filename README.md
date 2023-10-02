@@ -1,44 +1,30 @@
-# NO LONGER MAINTAINED
-This is plugin is no longer maintained and works well enough for my use case.
+# nvim-lastplace
 
-Feel free to fork and update as needed.
+> frok from [ethanholz/nvim-lastplace](https://github.com/ethanholz/nvim-lastplace)
 
-## nvim-lastplace
-A Lua rewrite of vim-lastplace
+## requirements
 
-Heavily inspired by https://github.com/farmergreg/vim-lastplace
+- nvim version 7.0 or greater
+- lazy.nvim
 
-## Installation
-[packer.nvim](https://github.com/wbthomason/packer.nvim)
+## fixed and append
+
+- Added ignore_extension for recognition of file extensions.
+
+## usage
+
 ```lua
-use 'ethanholz/nvim-lastplace'
-
-```
-[paq](https://github.com/savq/paq-nvim)
-```lua
-paq 'ethanholz/nvim-lastplace'
-```
-
-Then add the following to your init.lua:
-```lua
-require'nvim-lastplace'.setup{}
-```
-You may set options using the following:
-```lua
-require'nvim-lastplace'.setup {
-    lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-    lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
-    lastplace_open_folds = true
+return { 
+    "pchuan98/nvim-lastplace",
+    lazy = false,
+    config = function()
+        local opts = {
+            lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
+            lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
+            lastplace_open_folds = true,
+            ignore_extension = {"py"}
+        }
+        require("nvim-lastplace").setup(opts)
+    end
 }
-```
-
-For those of you still using Vimscript to configure your init.vim:
-```vim
-lua require'nvim-lastplace'.setup{}
-```
-You can now set options using:
-```vim
-let g:lastplace_ignore_buftype = "quickfix,nofile,help"
-let g:lastplace_ignore_filetype = "gitcommit,gitrebase,svn,hgcommit"
-let g:lastplace_open_folds = 1
 ```

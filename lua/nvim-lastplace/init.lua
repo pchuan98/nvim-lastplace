@@ -34,13 +34,14 @@ function lastplace.setup(options)
 		vim.api.nvim_create_autocmd("BufRead", {
 			group = group_name,
 			callback = function(opts)
-				vim.api.nvim_create_autocmd("BufWinEnter", {
-					group = group_name,
-					buffer = opts.buf,
-					callback = function()
-						lastplace.lastplace_ft(opts.buf)
-					end,
-				})
+				lastplace.lastplace_ft(opts.buf)
+				-- vim.api.nvim_create_autocmd("BufWinEnter", {
+				-- 	group = group_name,
+				-- 	buffer = opts.buf,
+				-- 	callback = function()
+				-- 		lastplace.lastplace_ft(opts.buf)
+				-- 	end,
+				-- })
 			end,
 		})
 	else
